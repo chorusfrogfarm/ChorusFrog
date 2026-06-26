@@ -41,8 +41,7 @@ body {
   margin-bottom: 3.5rem;
 }
 
-.sprig { display: block; transition: opacity 0.2s; }
-button:hover .sprig { opacity: 0.6; }
+.sprig { display: block; }
 
 .site-name {
   font-family: 'Cormorant Garamond', serif;
@@ -452,7 +451,6 @@ button:hover .sprig { opacity: 0.6; }
 
   <!-- Header with frog -->
   <header class="site-header">
-    <button onclick="promptPassword()" aria-label="Admin" style="background:none;border:none;cursor:pointer;padding:0;display:block;line-height:0;">
     <svg class="sprig" width="60" height="52" viewBox="0 0 60 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <!-- Body -->
       <ellipse cx="30" cy="34" rx="16" ry="13" stroke="#8FA888" stroke-width="1.1" fill="none"/>
@@ -481,7 +479,6 @@ button:hover .sprig { opacity: 0.6; }
       <!-- Right back leg -->
       <path d="M42 45 C46 48 49 50 51 49" stroke="#8FA888" stroke-width="1" stroke-linecap="round" fill="none"/>
     </svg>
-    </button>
     <span class="site-name">Chorus Frog Farm</span>
   </header>
 
@@ -528,7 +525,7 @@ button:hover .sprig { opacity: 0.6; }
   <!-- Featured recipe -->
   <section class="featured" id="featuredSection">
     <div id="featuredContent">
-      <p class="empty">Nothing on the board yet — check back soon.</p>
+
     </div>
   </section>
 
@@ -630,6 +627,27 @@ function togglePast(header, idx) {
   detail.classList.toggle('open', !isOpen);
 }
 
+const HARDCODED_RECIPE = {
+  name: 'Shaved Fennel, Pea & Raspberry Salad',
+  date: '2026-06-26',
+  serves: '4',
+  ingredients: `1 large fennel bulb, fronds reserved
+100g snap peas
+150g raspberries
+3 tbsp olive oil
+1½ tbsp lemon juice
+1 tsp honey
+¼ tsp flaky sea salt
+30g parmesan (optional)
+2 tbsp toasted pine nuts`,
+  steps: `Make the dressing: Whisk together olive oil, lemon juice and honey. Season with sea salt and black pepper.
+Prep the fennel: Halve lengthwise, remove the core and shave as thinly as possible. Drop into ice water for 5 minutes then drain and pat dry.
+Blanch the peas: Boil snap peas for 1 minute until bright green and snappy. Transfer to ice water, drain and pat dry.
+Assemble: Arrange fennel and peas on a platter. Scatter raspberries over the top. Drizzle with dressing.
+Finish: Top with parmesan, pine nuts and fennel fronds. Serve immediately.`,
+  notes: 'A bright summery salad with sweet peas, anise-scented fennel and tart raspberries in a honey-lemon dressing. Best dressed right before serving.'
+};
+
 function renderPage() {
   const recipes = load();
   const fc = document.getElementById('featuredContent');
@@ -637,7 +655,7 @@ function renderPage() {
   const pl = document.getElementById('pastList');
 
   if (!recipes.length) {
-    fc.innerHTML = '<p class="empty">Nothing on the board yet — check back soon.</p>';
+    fc.innerHTML = recipeBlock(HARDCODED_RECIPE);
     ps.style.display = 'none';
     return;
   }
