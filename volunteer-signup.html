@@ -207,28 +207,9 @@ hr.slot-rule {
 }
 
 /* ── Admin clear ── */
-.admin-bar {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 4rem;
-  padding-top: 2rem;
-  border-top: 0.5px solid var(--rule);
-  flex-wrap: wrap;
-}
 
-.admin-link {
-  background: none;
-  border: none;
-  font-family: 'Inter', sans-serif;
-  font-weight: 300;
-  font-size: 0.78rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-dim);
-  cursor: pointer;
-  transition: color 0.15s;
-}
+
+
 .admin-link:hover { color: var(--ink); }
 
 /* ── Toast ── */
@@ -338,12 +319,6 @@ hr.slot-rule {
 
   </div>
 
-  <div class="admin-bar">
-    <button class="admin-link" onclick="clearSlot('m')">Clear morning</button>
-    <button class="admin-link" onclick="clearSlot('e')">Clear afternoon</button>
-    <button class="admin-link" onclick="clearAll()">Clear all</button>
-  </div>
-
 </div>
 
 <div class="toast" id="toast"></div>
@@ -438,17 +413,7 @@ function removeName(slot, i) {
   toast(`${gone} removed`);
 }
 
-function clearSlot(slot) {
-  const label = slot === 'm' ? 'morning' : 'afternoon';
-  if (!confirm(`Clear the ${label} list for ${fmtDate(getDay())}?`)) return;
-  const d = loadDay(); d[slot] = []; saveDay(d); render();
-  toast(`${label.charAt(0).toUpperCase()+label.slice(1)} list cleared`);
-}
 
-function clearAll() {
-  if (!confirm(`Clear all sign-ups for ${fmtDate(getDay())}?`)) return;
-  saveDay({ m:[], e:[] }); render(); toast('Lists cleared for this day');
-}
 
 let tt;
 function toast(msg) {
@@ -467,6 +432,29 @@ const picker = document.getElementById('dayPicker');
 picker.valueAsDate = new Date();
 picker.addEventListener('change', render);
 
+// Auto-clear at midnight
+function msUntilMidnight() {
+  const now = new Date();
+  const midnight = new Date(now);
+  midnight.setHours(24, 0, 0, 0);
+  return midnight - now;
+}
+
+function scheduleAutoClear() {
+  setTimeout(() => {
+    const today = new Date().toISOString().split('T')[0];
+    const all = loadAll();
+    if (all[today]) {
+      delete all[today];
+      persistAll(all);
+    }
+    picker.valueAsDate = new Date();
+    render();
+    scheduleAutoClear();
+  }, msUntilMidnight());
+}
+
+scheduleAutoClear();
 render();
 </script>
 </body>
