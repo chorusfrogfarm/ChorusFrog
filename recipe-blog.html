@@ -601,10 +601,38 @@ function togglePast(header, idx) {
 }
 
 const HARDCODED_RECIPE = {
-  name: 'Shaved Fennel, Pea & Raspberry Salad',
+  name: 'Small-Batch Zucchini Mustard Relish',
   date: '2026-06-26',
-  serves: '4',
-  ingredients: `1 large fennel bulb, fronds reserved
+  serves: '5 cups',
+  ingredients: `4 cups zucchini, chopped
+2 onions, chopped
+½ cup sweet red pepper, chopped
+½ cup green pepper, chopped
+1 tbsp pickling salt
+325ml cold water
+1 cup granulated sugar
+3 tbsp all-purpose flour (or 1½ tbsp cornstarch)
+1 tbsp dry mustard
+½ tsp turmeric
+½ tsp mustard seeds
+½ tsp celery seeds
+1 cup white vinegar
+½ tsp red pepper flakes (optional)
+¼ tsp cayenne pepper (optional)`,
+  steps: `Salt the vegetables: In a large bowl combine zucchini, onions and peppers. Sprinkle with pickling salt. Pour in 1 cup of the water and stir well. Let stand for 1 hour, stirring occasionally.
+Drain and rinse: Drain the vegetables and rinse under cold water. Drain again and press out excess moisture.
+Make the sauce: In a heavy saucepan combine sugar, flour, dry mustard, turmeric, mustard seeds, celery seeds and remaining water. Gradually stir in vinegar. Bring to a boil.
+Simmer: Add the drained vegetables and return to a boil, stirring frequently. Reduce heat to medium-low and simmer uncovered for 20 to 25 minutes, stirring occasionally, until thickened but vegetables are still crunchy.
+Jar and process: Fill jars and process in a boiling water bath for 10 minutes. Makes about 5 cups.`,
+  notes: 'A tangy bright yellow pickle with that addictive sweet and sour tang. Great on burgers, pork chops and sausages. For a shortcut mix dry ingredients with vinegar and water in a 2L glass measure and microwave uncovered on High for 17 to 20 minutes, stirring three times.'
+};
+
+const PAST_RECIPES = [
+  {
+    name: 'Shaved Fennel, Pea & Raspberry Salad',
+    date: '2026-06-26',
+    serves: '4',
+    ingredients: `1 large fennel bulb, fronds reserved
 100g snap peas
 150g raspberries
 3 tbsp olive oil
@@ -613,13 +641,14 @@ const HARDCODED_RECIPE = {
 ¼ tsp flaky sea salt
 30g parmesan (optional)
 2 tbsp toasted pine nuts`,
-  steps: `Make the dressing: Whisk together olive oil, lemon juice and honey. Season with sea salt and black pepper.
+    steps: `Make the dressing: Whisk together olive oil, lemon juice and honey. Season with sea salt and black pepper.
 Prep the fennel: Halve lengthwise, remove the core and shave as thinly as possible. Drop into ice water for 5 minutes then drain and pat dry.
 Blanch the peas: Boil snap peas for 1 minute until bright green and snappy. Transfer to ice water, drain and pat dry.
 Assemble: Arrange fennel and peas on a platter. Scatter raspberries over the top. Drizzle with dressing.
 Finish: Top with parmesan, pine nuts and fennel fronds. Serve immediately.`,
-  notes: 'A bright summery salad with sweet peas, anise-scented fennel and tart raspberries in a honey-lemon dressing. Best dressed right before serving.'
-};
+    notes: 'A bright summery salad with sweet peas, anise-scented fennel and tart raspberries in a honey-lemon dressing. Best dressed right before serving.'
+  }
+];
 
 function renderPage() {
   const recipes = load();
@@ -627,15 +656,13 @@ function renderPage() {
   const ps = document.getElementById('pastSection');
   const pl = document.getElementById('pastList');
 
-  if (!recipes.length) {
-    fc.innerHTML = recipeBlock(HARDCODED_RECIPE);
-    ps.style.display = 'none';
-    return;
-  }
+  // Always show hardcoded as featured
+  fc.innerHTML = recipeBlock(HARDCODED_RECIPE);
 
-  fc.innerHTML = recipeBlock(recipes[0]);
+  // Merge local recipes + hardcoded past recipes
+  const allPast = [...recipes, ...PAST_RECIPES];
 
-  const past = recipes.slice(1);
+  const past = allPast;
   if (past.length) {
     ps.style.display = 'block';
     pl.innerHTML = past.map((r, i) => `
