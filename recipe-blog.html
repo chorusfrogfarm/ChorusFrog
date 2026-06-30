@@ -659,8 +659,9 @@ function renderPage() {
   // Always show hardcoded as featured
   fc.innerHTML = recipeBlock(HARDCODED_RECIPE);
 
-  // Merge local recipes + hardcoded past recipes
-  const allPast = [...recipes, ...PAST_RECIPES];
+  // Merge local recipes + hardcoded past recipes, avoiding duplicates by name
+  const localNames = new Set(recipes.map(r => r.name));
+  const allPast = [...recipes, ...PAST_RECIPES.filter(r => !localNames.has(r.name))];
 
   const past = allPast;
   if (past.length) {
