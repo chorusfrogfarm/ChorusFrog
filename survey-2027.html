@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chorus Frog Farm — 2027 Program Member Survey</title>
+<title>Chorus Frog Farm — 2027 Program Survey</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -268,8 +268,9 @@ hr.rule {
     <span class="site-name">Chorus Frog Farm</span>
   </header>
 
-  <h1 class="survey-title">2027 Program Member Survey</h1>
+  <h1 class="survey-title">2027 Program Survey</h1>
   <p class="survey-intro">Pledged funds will be coordinated with members' preferred crops and operations will be scaled accordingly so that costs are covered. Please complete this survey and let's see what kind of program we can build for 2027.</p>
+      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;color:var(--wheat);text-align:center;margin-bottom:0.5rem;">Please complete by end of October 2026.</p>
 
 
     <!-- ── Contact ── -->
@@ -384,6 +385,15 @@ hr.rule {
           <label style="display:block;font-size:0.9rem;letter-spacing:0.04em;color:var(--ink-mid);margin-bottom:6px;">Is there anything else you'd like to see produced next year?</label>
           <textarea id="f-produce-notes" placeholder="Any crops, products, or ideas you'd love to see…"></textarea>
         </div>
+        <div style="margin-top:1.5rem;">
+          <label style="display:block;font-size:0.9rem;letter-spacing:0.04em;color:var(--ink-mid);margin-bottom:0.75rem;">Are you interested in meat and protein options being part of the program?</label>
+          <div class="choice-group">
+            <label class="choice-item"><input type="radio" name="meat" value="Yes, very interested"><span>Yes, very interested</span></label>
+            <label class="choice-item"><input type="radio" name="meat" value="Somewhat interested"><span>Somewhat interested</span></label>
+            <label class="choice-item"><input type="radio" name="meat" value="Not interested"><span>Not interested</span></label>
+            <label class="choice-item"><input type="radio" name="meat" value="Other"><span>Other:</span><input type="text" class="other-input" id="meat-other" placeholder="please specify"></label>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -448,7 +458,8 @@ hr.rule {
           <label>What amount would you be willing to pledge for 2027?</label>
           <input type="text" id="f-pledge" placeholder="e.g. $500">
           <div style="margin-top:1.5rem;">
-            <label style="display:block;font-size:0.9rem;letter-spacing:0.04em;color:var(--ink-mid);margin-bottom:0.75rem;">Select the method of payment most convenient for you</label>
+            <label style="display:block;font-size:0.9rem;letter-spacing:0.04em;color:var(--ink-mid);margin-bottom:0.4rem;">Select the method of payment most convenient for you</label>
+            <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.95rem;color:var(--wheat);margin-bottom:0.75rem;">Payment due by end of November 2026.</p>
             <div class="choice-group">
               <label class="choice-item"><input type="radio" name="payment" value="E-transfer to chorusfrog@thequarryfarm.ca"><span>E-transfer to <strong>chorusfrog@thequarryfarm.ca</strong></span></label>
               <label class="choice-item"><input type="radio" name="payment" value="Cheque to Chorus Frog Organic Gardens at 190 Jasper Rd Salt Spring BC V8K 2X8"><span>Send a cheque to Chorus Frog Organic Gardens at 190 Jasper Rd Salt Spring BC V8K 2X8</span></label>
@@ -547,6 +558,7 @@ function submitSurvey() {
   body.append(ENTRIES.hours,       val('f-hours'));
   body.append(ENTRIES.pledge,      val('f-pledge'));
   body.append(ENTRIES.payment,     getRadio('payment'));
+  body.append('entry.1405445922',    getRadio('meat'));
 
   fetch(FORM_URL, { method: 'POST', mode: 'no-cors', body })
     .then(() => {
