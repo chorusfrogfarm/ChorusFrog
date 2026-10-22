@@ -7,7 +7,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
   --linen:   #FAF7F2;
   --ink:     #1a2e1c;
@@ -17,28 +16,24 @@
   --wheat:   #C9A96E;
   --rule:    rgba(26,46,28,0.18);
 }
-
 html, body {
   width: 100%;
   min-height: 100vh;
   background: var(--linen);
   font-size: 20px;
 }
-
 body {
   color: var(--ink);
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
 }
-
 .page {
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
   padding: 3.5rem 3rem 6rem;
 }
-
 /* ── Header ── */
 .site-header {
   display: flex;
@@ -72,16 +67,13 @@ body {
   max-width: 620px;
   margin: 0 auto 0.75rem;
 }
-
 hr.rule {
   border: none;
   border-top: 0.5px solid var(--rule);
   margin: 2.5rem 0;
 }
-
 /* ── Section ── */
 .section { margin-bottom: 2.5rem; }
-
 .section-label {
   font-size: 0.85rem;
   letter-spacing: 0.2em;
@@ -91,7 +83,6 @@ hr.rule {
   margin-bottom: 1.5rem;
   display: block;
 }
-
 /* ── Two column layout for form sections ── */
 .two-col {
   display: grid;
@@ -107,10 +98,8 @@ hr.rule {
   .two-col, .three-col { grid-template-columns: 1fr; }
   .page { padding: 2.5rem 1.5rem 5rem; }
 }
-
 /* ── Fields ── */
 .field { margin-bottom: 1.5rem; }
-
 .field label {
   display: block;
   font-size: 0.9rem;
@@ -119,7 +108,6 @@ hr.rule {
   margin-bottom: 6px;
 }
 .req { color: var(--wheat); }
-
 .field input[type="text"],
 .field input[type="email"],
 .field input[type="tel"],
@@ -143,17 +131,14 @@ hr.rule {
 .field input::placeholder,
 .field textarea::placeholder { color: var(--ink-dim); font-style: italic; font-size: 0.88rem; }
 .field textarea { resize: vertical; min-height: 80px; line-height: 1.7; }
-
 /* ── Choice items ── */
 .choice-group { display: flex; flex-direction: column; gap: 0.7rem; margin-top: 0.25rem; }
-
 .choice-item {
   display: flex;
   align-items: center;
   gap: 2rem;
   cursor: pointer;
 }
-
 .choice-item input[type="radio"],
 .choice-item input[type="checkbox"] {
   appearance: none;
@@ -209,14 +194,12 @@ hr.rule {
   display: inline-block;
   vertical-align: bottom;
 }
-
 .choice-item:has(.other-input) {
   align-items: center;
   flex-wrap: nowrap;
 }
 .other-input:focus { border-bottom-color: var(--sage); }
 .other-input::placeholder { color: var(--ink-dim); font-style: italic; }
-
 /* ── Pledge box ── */
 .pledge-context {
   border-left: 1.5px solid var(--sage);
@@ -233,7 +216,6 @@ hr.rule {
   font-weight: 500;
   color: var(--ink);
 }
-
 /* ── Submit ── */
 .submit-row { margin-top: 2.5rem; display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
 .submit-btn {
@@ -251,28 +233,58 @@ hr.rule {
 .submit-btn:hover { background: var(--ink-mid); }
 .submit-note { font-size: 0.72rem; color: var(--ink-dim); font-style: italic; }
 .form-status { font-size: 0.78rem; color: #b05050; margin-top: 0.5rem; font-style: italic; min-height: 1rem; }
-
 /* ── Success ── */
 .success-msg { display: none; text-align: center; padding: 4rem 0; }
 .success-msg.show { display: block; }
 .success-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 2.2rem; color: var(--ink); margin-bottom: 0.5rem; }
 .success-sub { font-size: 0.88rem; color: var(--ink-dim); line-height: 1.7; margin-top: 0.5rem; }
+
+/* Compact, readable form layout */
+html, body { font-size: 18px; }
+body, input, textarea, button { font-family: Arial, Helvetica, sans-serif; }
+.page { max-width: 820px; padding: 2.5rem 2rem 3.5rem; }
+.site-header { gap: .4rem; margin-bottom: 1.5rem; }
+.survey-intro { line-height: 1.6; }
+hr.rule { margin: 1.6rem 0; }
+.section { margin-bottom: 0; }
+.section-label { margin-bottom: 1rem; font-size: .75rem; letter-spacing: .14em; color: var(--ink-dim); }
+.two-col { gap: 0 1.5rem; }
+.three-col { gap: 0 1rem; }
+.about-stack { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
+.about-stack .field { margin-bottom: 0; }
+.field { min-width: 0; margin-bottom: 1.1rem; }
+.field > label:not(.choice-item), .field div > label:not(.choice-item) { font-weight: 600; letter-spacing: 0 !important; line-height: 1.45; }
+.choice-group { gap: .15rem; margin-top: .4rem; }
+.field label.choice-item { display: flex; align-items: flex-start; gap: .65rem; margin-bottom: 0; padding: .4rem 0; font-weight: 400; letter-spacing: 0; line-height: 1.45; }
+.choice-item input[type="radio"], .choice-item input[type="checkbox"] { flex: 0 0 18px; width: 18px; height: 18px; min-width: 18px; margin: .13rem 0 0; border-width: 1px; }
+.choice-item span { font-family: Arial, Helvetica, sans-serif; font-size: .9rem; line-height: 1.45; overflow-wrap: anywhere; }
+.field input[type="text"], .field input[type="email"], .field input[type="tel"], .field textarea { font-family: Arial, Helvetica, sans-serif; font-size: .9rem; padding: 8px 0; }
+.field input::placeholder, .field textarea::placeholder { font-style: normal; font-size: .88rem; }
+.field .choice-item .other-input { width: auto; min-width: 0; padding: 0 0 4px; }
+.choice-item:has(.other-input) { align-items: baseline; }
+input:focus-visible, textarea:focus-visible, button:focus-visible { outline: 2px solid var(--ink-dim); outline-offset: 3px; }
+.pledge-context { font-family: Arial, Helvetica, sans-serif; font-style: normal; font-size: .9rem; line-height: 1.65; }
+.section:has(#f-pledge) .two-col { grid-template-columns: minmax(0, 1fr); }
+.submit-row { margin-top: 1rem; gap: 1rem; }
+@media (max-width: 600px) {
+ .page { padding: 1.5rem 1.1rem 2.5rem; }
+ .two-col { grid-template-columns: minmax(0, 1fr); }
+ .three-col { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 .75rem; }
+ .three-col .choice-item:has(.other-input) { grid-column: 1 / -1; }
+}
+
 </style>
 </head>
 <body>
 <div class="page">
-
   <div id="formWrap">
   <header class="site-header">
     <img src="https://chorusfrogfarm.github.io/ChorusFrog/frog.png" alt="Chorus Frog" style="width:80px;height:auto;">
     <span class="site-name">Chorus Frog Farm</span>
   </header>
-
   <h1 class="survey-title">2027 Program Survey</h1>
   <p class="survey-intro">Pledged funds will be coordinated with members' preferred crops and operations will be scaled accordingly so that costs are covered. Please complete this survey and let's see what kind of program we can build for 2027.</p>
       <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;color:var(--wheat);text-align:center;margin-bottom:2rem;">Please complete by end of October 2026.</p>
-
-
     <!-- ── Contact ── -->
     <div class="section">
       <span class="section-label">Contact information</span>
@@ -303,13 +315,11 @@ hr.rule {
         </div>
       </div>
     </div>
-
     <hr class="rule">
-
     <!-- ── About you ── -->
     <div class="section">
       <span class="section-label">About you</span>
-      <div class="two-col">
+      <div class="about-stack">
         <div class="field">
           <label>Which of the following applies to you? <span class="req">*</span></label>
           <div class="choice-group">
@@ -330,9 +340,7 @@ hr.rule {
         </div>
       </div>
     </div>
-
     <hr class="rule">
-
     <!-- ── Household ── -->
     <div class="section">
       <span class="section-label">Your household</span>
@@ -346,9 +354,7 @@ hr.rule {
         </div>
       </div>
     </div>
-
     <hr class="rule">
-
     <!-- ── Crops ── -->
     <div class="section">
       <span class="section-label">Crops & produce</span>
@@ -372,7 +378,6 @@ hr.rule {
           <label class="choice-item" style="margin-bottom:0.7rem;"><input type="checkbox" name="veggie" value="Other"><span>Other:</span><input type="text" class="other-input" id="veggie-other" placeholder="specify"></label>
         </div>
       </div>
-
       <div class="field">
         <label>Would you like to see the preserves and frozen products continue?</label>
         <div class="choice-group" style="margin-top:0.25rem;">
@@ -396,9 +401,7 @@ hr.rule {
         </div>
       </div>
     </div>
-
     <hr class="rule">
-
     <!-- ── Food security ── -->
     <div class="section">
       <span class="section-label">Food security & community</span>
@@ -415,9 +418,7 @@ hr.rule {
         </div>
       </div>
     </div>
-
     <hr class="rule">
-
     <!-- ── Support ── -->
     <div class="section">
       <span class="section-label">How you'd like to help</span>
@@ -443,9 +444,7 @@ hr.rule {
         </div>
       </div>
     </div>
-
     <hr class="rule">
-
     <!-- ── Pledge ── -->
     <div class="section">
       <span class="section-label">Your pledge for 2027</span>
@@ -469,21 +468,17 @@ hr.rule {
         </div>
       </div>
     </div>
-
     <p class="form-status" id="formStatus"></p>
     <div class="submit-row">
       <button class="submit-btn" onclick="submitSurvey()">Submit survey</button>
       <span class="submit-note">Your responses go directly to the Chorus Frog Farm team.</span>
     </div>
-
   </div>
-
   <div class="success-msg" id="successMsg">
     <img src="https://chorusfrogfarm.github.io/ChorusFrog/frog.png" alt="Chorus Frog" style="width:80px;height:auto;">
     <h2 class="success-title">Thank you!</h2>
     <p class="success-sub">Your survey has been submitted.<br>We'll be in touch as we plan the 2027 season.</p>
   </div>
-
 </div>
 <script>
 const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeGx9KxgJ_8Av6qlChWZuCHZJINyImIbU7VVGFQEsd5wzCC6A/formResponse';
@@ -506,7 +501,6 @@ const ENTRIES = {
   pledge:       'entry.69787124',
   payment:      'entry.1297564221',
 };
-
 function getRadio(name) {
   const checked = document.querySelector(`input[name="${name}"]:checked`);
   if (!checked) return '';
@@ -516,7 +510,6 @@ function getRadio(name) {
   }
   return checked.value;
 }
-
 function getCheckboxes(name) {
   return [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(c => {
     if (c.value === 'Other') {
@@ -526,9 +519,7 @@ function getCheckboxes(name) {
     return c.value;
   }).join(', ');
 }
-
 function val(id) { const el = document.getElementById(id); return el ? el.value.trim() : ''; }
-
 function submitSurvey() {
   const status = document.getElementById('formStatus');
   if (!val('f-email'))   { status.textContent = 'Please enter your email.'; return; }
@@ -539,7 +530,6 @@ function submitSurvey() {
   if (!getRadio('pod'))         { status.textContent = 'Please select your neighbourhood pod.'; return; }
   if (!getRadio('household'))   { status.textContent = 'Please select your household size.'; return; }
   status.textContent = '';
-
   const body = new FormData();
   body.append(ENTRIES.email,       val('f-email'));
   body.append(ENTRIES.name,        val('f-name'));
@@ -559,7 +549,6 @@ function submitSurvey() {
   body.append(ENTRIES.pledge,      val('f-pledge'));
   body.append(ENTRIES.payment,     getRadio('payment'));
   body.append('entry.1405445922',    getRadio('meat'));
-
   fetch(FORM_URL, { method: 'POST', mode: 'no-cors', body })
     .then(() => {
       document.getElementById('formWrap').style.display = 'none';
